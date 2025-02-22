@@ -6,16 +6,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Products} from './components/products';
+import { Productcntxtprovider } from './context/productcontext';
+import Navbar from './components/navbar';
+import { Addprod } from './components/addprod';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/products' element={<Products />} />
-        {/* <App /> */}
-      </Routes>
-    </BrowserRouter>
+    <Productcntxtprovider>
+      <BrowserRouter>
+      <Navbar />
+        <Routes>
+          <Route path='/products' element={<Products />} />
+          <Route path='/add' element={<Addprod />} />
+          {/* <App /> */}
+        </Routes>
+      </BrowserRouter>
+    </Productcntxtprovider>
   </React.StrictMode>
 );
 
