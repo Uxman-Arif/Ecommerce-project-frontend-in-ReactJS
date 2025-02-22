@@ -3,6 +3,7 @@ import React, {useState, useEffect, createContext} from 'react';
 
 export const checkoutcntxt = createContext(null);
 export function Checkoutprovider(props) {
+    const [count, setcount] = useState(1);
     const [prod, setprod] = useState([]);
     const [prodid, setprodid] = useState(null);
     async function fetchprod() {
@@ -18,7 +19,7 @@ export function Checkoutprovider(props) {
     }, [prodid])
 
     return (
-        <checkoutcntxt.Provider value={{prod, setprodid}}>
+        <checkoutcntxt.Provider value={{prod, setprodid, count, setcount}}>
             {props.children}
         </checkoutcntxt.Provider>
     );

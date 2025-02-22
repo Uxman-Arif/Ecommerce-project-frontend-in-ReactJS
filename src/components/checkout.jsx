@@ -22,7 +22,24 @@ export function Checkout() {
                     <p><strong>Description: </strong>{product.description}</p>
                     <p><strong>Available Stock: </strong>{product.stk_available}</p>
                     <p><strong>Price: </strong>{product.price}</p>
-
+                    <p><strong>Select Quantity: </strong></p>
+                    <p className='text-center'>
+                        <button className="btn btn-success fw-bold w-25" onClick={()=>{prod.count>1?prod.setcount(prod.count-1):<></>}}>-</button>
+                        <span className="mx-3">{prod.count}</span>
+                        <button className="btn btn-success fw-bold w-25" onClick={()=>{prod.setcount(prod.count+1)}}>+</button>
+                    </p>
+                    <button className="btn btn-primary w-100">Add to Cart!</button>
+                </div>
+            </div><hr />
+            
+            <div className="row justify-content-center">
+                <h1 className="text-info text-center">Product Reviews</h1><hr />
+                <div className="col-6">
+                    <form action="">
+                        <label htmlFor="" className='fw-bold'>Share you'r thouoghts about this Product:</label>
+                        <textarea name="review" id="" className='w-100' rows={5}></textarea>
+                        <button className="btn btn-primary w-100">Post!</button>
+                    </form>
                 </div>
             </div>
         </div>:
