@@ -18,7 +18,7 @@ export function Products() {
                                     <p class="card-text"><strong>Description: </strong>{ prod.description.slice(0, 30) }...</p>
                                     <p class="card-text"><strong>Price: </strong>{ prod.price }</p>
                                     <p class="card-text"><strong>Available Stock: </strong>{ prod.stk_available }</p>
-                                    <a href="" className="btn btn-primary w-100 mt-1">Checkout!</a>
+                                    <a href={`/checkout/${prod._id}`} className="btn btn-primary w-100 mt-1">Checkout!</a>
                                     <button className="btn btn-primary w-100 mt-1">Add to Cart!</button>
                                 </div>
                             </div>

@@ -9,19 +9,24 @@ import {Products} from './components/products';
 import { Productcntxtprovider } from './context/productcontext';
 import Navbar from './components/navbar';
 import { Addprod } from './components/addprod';
+import { Checkout } from './components/checkout';
+import {Checkoutprovider} from './context/ceckoutcontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Productcntxtprovider>
-      <BrowserRouter>
-      <Navbar />
-        <Routes>
-          <Route path='/products' element={<Products />} />
-          <Route path='/add' element={<Addprod />} />
-          {/* <App /> */}
-        </Routes>
-      </BrowserRouter>
+      <Checkoutprovider>
+        <BrowserRouter>
+        <Navbar />
+          <Routes>
+            <Route path='/products' element={<Products />} />
+            <Route path='/add' element={<Addprod />} />
+            <Route path='/checkout/:id' element={<Checkout />} />
+            {/* <App /> */}
+          </Routes>
+        </BrowserRouter>
+      </Checkoutprovider>
     </Productcntxtprovider>
   </React.StrictMode>
 );
