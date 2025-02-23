@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
 import { productcntxt } from '../context/productcontext';
-
+import { cartcntxt } from '../context/cartcontext';
 
 export function Products() {
+    const cart = useContext(cartcntxt);
     const prods = useContext(productcntxt);
     return (
         <div className="container">
@@ -19,7 +20,12 @@ export function Products() {
                                     <p class="card-text"><strong>Price: </strong>{ prod.price }</p>
                                     <p class="card-text"><strong>Available Stock: </strong>{ prod.stk_available }</p>
                                     <a href={`/checkout/${prod._id}`} className="btn btn-primary w-100 mt-1">Checkout!</a>
-                                    <button className="btn btn-primary w-100 mt-1">Add to Cart!</button>
+                                    <form action="" onSubmit={cart.addcarthandle}>
+                                            <input type="hidden" name="prodid" value={prod._id} id="" />
+                                            <input type="hidden" name="quantity" value={1} id="" />
+                                            <button className="btn btn-primary w-100 mt-1">Add to Cart!</button>
+                                        </form>
+                                    
                                 </div>
                             </div>
                         </div>

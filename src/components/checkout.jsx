@@ -13,7 +13,6 @@ export function Checkout() {
     }, [params.id])
 
     const product = prod.prod.prod;
-    console.log(prod.prodreview.reviews)
     return (
         product?
         <div className="container">
