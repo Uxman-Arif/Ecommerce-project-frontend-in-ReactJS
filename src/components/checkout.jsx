@@ -7,8 +7,13 @@ import { checkoutcntxt } from '../context/ceckoutcontext';
 export function Checkout() {
     const prod = useContext(checkoutcntxt);
     const params = useParams();
-    prod.setprodid(params.id);
+    
+    useEffect(()=>{
+        prod.setprodid(params.id);
+    }, [params.id])
+
     const product = prod.prod.prod;
+    console.log(prod.prodreview.reviews)
     return (
         product?
         <div className="container">
@@ -35,11 +40,24 @@ export function Checkout() {
             <div className="row justify-content-center">
                 <h1 className="text-info text-center">Product Reviews</h1><hr />
                 <div className="col-6">
-                    <form action="">
+                    <form action="" onSubmit={prod.handlerevewupload}>
                         <label htmlFor="" className='fw-bold'>Share you'r thouoghts about this Product:</label>
                         <textarea name="review" id="" className='w-100' rows={5}></textarea>
                         <button className="btn btn-primary w-100">Post!</button>
                     </form>
+                    {
+                    prod.prodreview.reviews?
+                    prod.prodreview.reviews.map((rview)=>(
+                    <div className="m-2 border p-2 shadow rounded rounded-5">
+                    <div className="row align-items-center">
+                        <div className="col-2"><img style={{ borderRadius: "50px" }} src="http://127.0.0.1:8000/uploads/profiledefault.png" alt="" className="img img-fluid" /></div>
+                        <div className="col-8 fw-bold h3">Basheer</div>
+                    </div>
+                        <p>{rview.review}</p>
+
+                    </div>))
+                    :<h1>No Reviews on this product!</h1>
+                    }
                 </div>
             </div>
         </div>:
