@@ -16,10 +16,10 @@ export function Addprod() {
                         <input className='m-1' type="text" name="description" id="" /><br />
 
                         <label htmlFor="" className='fw-bold'>Available Stock: </label>
-                        <input className='m-1' type="text" name="stk" id="" /><br />
+                        <input className='m-1' type="number" name="stk" id="" /><br />
 
                         <label htmlFor="" className='fw-bold'>Price: </label>
-                        <input className='m-1' type="text" name="price" id="" /><br />
+                        <input className='m-1' type="number" name="price" id="" /><br />
 
                         <label htmlFor="" className='fw-bold'>Image: </label>
                         <input className='m-1' type="file" name="picture" id="" /><br />

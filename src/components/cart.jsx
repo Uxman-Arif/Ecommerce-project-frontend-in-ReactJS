@@ -6,7 +6,6 @@ export function Cart() {
     const quantityhandle = useContext(checkoutcntxt);
     const cart = useContext(cartcntxt);
     const cartitems = cart.cart.cartitems;
-    console.log(cart.cart.cartitems);
     return (
         <div className="container mt-4">
             <h2 className="text-center text-success fw-bold mb-4">Shopping Cart</h2>

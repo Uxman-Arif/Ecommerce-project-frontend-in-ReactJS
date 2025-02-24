@@ -28,7 +28,6 @@ export function Checkoutprovider(props) {
 
     async function handlerevewupload(e) {
         e.preventDefault();
-        console.log(e.target.review.value);
         await fetch(`http://127.0.0.1:8000/checkout/${prodid}`, {
             method: 'POST',
             headers: {

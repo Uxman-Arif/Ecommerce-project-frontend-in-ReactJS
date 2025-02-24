@@ -11,25 +11,29 @@ async function fetchcart() {
 export function Cartcontextprovider(props) {
   const [cartCount, setCartCount] = useState(0);
     const [cart, setcart] = useState([]);
+
     useEffect(()=>{
         fetchcart().then((crt)=>{setcart(crt)});
     }, []);
 
-  useEffect(() => {
-    setCartCount(cart.cartitems?.length || 0);
-}, [cart.cartitems]);
+    useEffect(() => {
+        setCartCount(cart.cartitems?.length || 0);
+    }, [cart.cartitems]);
 
-    function addcarthandle(e) {
+
+    async function addcarthandle(e) {
         e.preventDefault();
-        fetch('http://127.0.0.1:8000/cart', {
+        const response = await fetch('http://127.0.0.1:8000/cart', {
             method:'POST',
             headers: {
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({prodid:e.target.prodid.value, quantity:e.target.quantity.value}),
         });
-            e.target.reset()
-            fetchcart().then((crt)=>{setcart(crt)})
+
+        const newcart = await response.json();
+        e.target.reset()
+        fetchcart().then((crt)=>{setcart(newcart);setCartCount(cart.cartitems?.length || 0);});
     };
 
 
