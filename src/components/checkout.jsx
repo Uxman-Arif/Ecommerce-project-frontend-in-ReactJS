@@ -1,13 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import { checkoutcntxt } from '../context/ceckoutcontext';
-
+import { cartcntxt } from '../context/cartcontext';
 
 
 export function Checkout() {
     const prod = useContext(checkoutcntxt);
+    const cart = useContext(cartcntxt);
     const params = useParams();
     
+    useEffect(() => {
+        cart.setCartCount(cart.cart.cartitems?.length || 0);
+    }, [cart.cart.cartitems]);
+
     useEffect(()=>{
         prod.setprodid(params.id);
     }, [params.id])
@@ -32,7 +37,11 @@ export function Checkout() {
                         <span className="mx-3">{prod.count}</span>
                         <button className="btn btn-success fw-bold w-25" onClick={()=>{prod.setcount(prod.count+1)}}>+</button>
                     </p>
-                    <button className="btn btn-primary w-100">Add to Cart!</button>
+                    <form action="" onSubmit={cart.addcarthandle}>
+                            <input type="hidden" name="prodid" value={product._id} id="" />
+                            <input type="hidden" name="quantity" value={prod.count} id="" />
+                            <button className="btn btn-primary w-100 mt-1">Add to Cart!</button>
+                    </form>
                 </div>
             </div><hr />
             

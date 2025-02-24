@@ -9,10 +9,16 @@ async function fetchcart() {
 }
 
 export function Cartcontextprovider(props) {
+  const [cartCount, setCartCount] = useState(0);
     const [cart, setcart] = useState([]);
     useEffect(()=>{
         fetchcart().then((crt)=>{setcart(crt)});
     }, []);
+
+  useEffect(() => {
+    setCartCount(cart.cartitems?.length || 0);
+}, [cart.cartitems]);
+
     function addcarthandle(e) {
         e.preventDefault();
         fetch('http://127.0.0.1:8000/cart', {
@@ -24,7 +30,7 @@ export function Cartcontextprovider(props) {
         });
             e.target.reset()
             fetchcart().then((crt)=>{setcart(crt)})
-    }
+    };
 
 
     async function quantityhandle(prodid, action) {
@@ -51,7 +57,7 @@ export function Cartcontextprovider(props) {
     };
 
     return (
-    <cartcntxt.Provider value={{cart, addcarthandle, quantityhandle, deletehandle}}>
+    <cartcntxt.Provider value={{cart, addcarthandle, quantityhandle, deletehandle, cartCount, setCartCount}}>
         {props.children}
     </cartcntxt.Provider>
     )

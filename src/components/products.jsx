@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { productcntxt } from '../context/productcontext';
 import { cartcntxt } from '../context/cartcontext';
 
-export function Products() {
+export function Products(props) {
     const cart = useContext(cartcntxt);
     const prods = useContext(productcntxt);
     return (
@@ -11,7 +11,7 @@ export function Products() {
                 {
                     prods.product.products?
                     prods.product.products.map((prod)=>(
-                        <div className="col-4">
+                        <div className="col-4" key={prod._id}>
                             <div class="card">
                                 <img class="card-img-top" src={`http://127.0.0.1:8000/uploads/${prod.picture}`} alt="" />
                                 <div class="card-body">
@@ -24,7 +24,7 @@ export function Products() {
                                             <input type="hidden" name="prodid" value={prod._id} id="" />
                                             <input type="hidden" name="quantity" value={1} id="" />
                                             <button className="btn btn-primary w-100 mt-1">Add to Cart!</button>
-                                        </form>
+                                    </form>
                                     
                                 </div>
                             </div>
