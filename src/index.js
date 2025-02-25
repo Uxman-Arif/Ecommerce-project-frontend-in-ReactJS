@@ -13,6 +13,7 @@ import { Checkout } from './components/checkout';
 import {Checkoutprovider} from './context/ceckoutcontext';
 import { Cart } from './components/cart';
 import { Cartcontextprovider } from './context/cartcontext';
+import {Signup} from './components/signup';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,6 +28,7 @@ root.render(
               <Route path='/add' element={<Addprod />} />
               <Route path='/checkout/:id' element={<Checkout />} />
               <Route path='/cart' element={<Cart />} />
+              <Route path='/signup' element={<Signup />} />
               {/* <App /> */}
             </Routes>
           </BrowserRouter>
