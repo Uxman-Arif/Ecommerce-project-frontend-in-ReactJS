@@ -28,8 +28,6 @@ export function Signin() {
         }
         e.target.reset();
     };
-    const token = localStorage.getItem('Login Token');
-    console.log(token?token:'notokenfound');
 
     return (
         <div className="container">

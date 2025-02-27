@@ -12,7 +12,7 @@ export function Productcntxtprovider(props) {
 
     useEffect(()=>{
         fetchproducts().then((prod)=>setproduct(prod));
-    });
+    }, []);
 
     async function handleupload(e) {
         e.preventDefault();

@@ -15,6 +15,7 @@ import { Cart } from './components/cart';
 import { Cartcontextprovider } from './context/cartcontext';
 import {Signup} from './components/signup';
 import {Signin} from './components/signin';
+import Verifyuser from './context/verifyuser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,10 +26,12 @@ root.render(
           <BrowserRouter>
           <Navbar />
             <Routes>
-              <Route path='/products' element={<Products />} />
-              <Route path='/add' element={<Addprod />} />
-              <Route path='/checkout/:id' element={<Checkout />} />
-              <Route path='/cart' element={<Cart />} />
+              <Route element={<Verifyuser />}>
+                <Route path='/products' element={<Products />} />
+                <Route path='/add' element={<Addprod />} />
+                <Route path='/checkout/:id' element={<Checkout />} />
+                <Route path='/cart' element={<Cart />} />
+              </Route>
               <Route path='/signup' element={<Signup />} />
               <Route path='/Signin' element={<Signin />} />
               {/* <App /> */}
