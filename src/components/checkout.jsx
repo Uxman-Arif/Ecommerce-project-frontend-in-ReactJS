@@ -47,6 +47,7 @@ export function Checkout() {
                     <form onSubmit={cart.addcarthandle}>
                         <input type="hidden" name="prodid" value={product._id} />
                         <input type="hidden" name="quantity" value={prod.count} />
+                        <input type="hidden" name="owner" value={user?.user?._id} />
                         <button className="btn btn-primary w-100 mt-1" disabled={isInCart}>Add to Cart!</button>
                     </form>
                 </div>
