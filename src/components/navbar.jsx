@@ -1,42 +1,71 @@
 import { Link, useNavigate } from "react-router-dom";
-import {useContext} from 'react';
-import { cartcntxt } from '../context/cartcontext';
+import { useContext } from "react";
+import { cartcntxt } from "../context/cartcontext";
 
 const Navbar = () => {
   const cart = useContext(cartcntxt);
   const cartitems = cart.cart.cartitems;
-
   const navigate = useNavigate();
 
   function logoutfnc() {
-    localStorage.removeItem('Login Token')
-    navigate('/signin');
-  };
+    localStorage.removeItem("Login Token");
+    navigate("/signin");
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary text-primary bg-light fw-bold">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fw-bold">
+      <div className="container">
+        <Link className="navbar-brand text-success fw-bold h2" to="/">
+          Ecommerce
+        </Link>
+
+        {/* Navbar Toggler Button */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav w-100 d-flex justify-content-between">
-            <div className="text-success fw-bold h2">Ecommerce</div>
-            <div className="d-flex">
 
-            <Link className="nav-link" to="/products">Products</Link>
-            <Link className="nav-link" to="/add">Add Product</Link>
-            <Link className="nav-link" to="/cart">Cart({cartitems?.length || 0})</Link>
-            </div>
-            <div style={{borderRadius:"10px"}} onClick={()=>{logoutfnc()}} className="nav-link mb-1 bg-success text-light user-select-none">Logout</div>
-          </div>
+        {/* Navbar Menu */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">
+                Products
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/add">
+                Add Product
+              </Link>
+            </li>
+            <li className="nav-item">
+  <Link className="nav-link position-relative" to="/cart">
+    <i className="bi bi-cart fs-5"></i>
+    {cartitems?.length > 0 && (
+      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {cartitems.length}
+      </span>
+    )}
+  </Link>
+</li>
+
+
+            <li className="nav-item">
+              <button
+                className="btn btn-success text-light ms-2"
+                onClick={logoutfnc}
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

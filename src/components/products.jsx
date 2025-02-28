@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { productcntxt } from '../context/productcontext';
 import { cartcntxt } from '../context/cartcontext';
 import { useNavigate, useOutletContext } from 'react-router-dom';
+import styles from '../css/products.module.css';
 
 export function Products() {
     const { user } = useOutletContext();
@@ -10,8 +11,15 @@ export function Products() {
     const navigate = useNavigate();
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
+        <div className={`container-fluid ${styles.container}`}>
+            <div className={`${styles.cover} row`}>
+                <div className="col-md-6 col-9">
+
+                <h1>Your One-Stop Shop for Quality, Convenience, and Savings!</h1>
+                <button>Explore Brands!</button>
+                </div>
+            </div>
+            <div className="row justify-content-center mx-5">
                 {prods.product.products ? (
                     prods.product.products.map((prod) => {
                         const isInCart = cart?.cart?.cartitems.some(item => prod._id === item.product._id);
