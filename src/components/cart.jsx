@@ -5,14 +5,14 @@ import { checkoutcntxt } from '../context/ceckoutcontext';
 export function Cart() {
     const quantityhandle = useContext(checkoutcntxt);
     const cart = useContext(cartcntxt);
-    const cartitems = cart.cart.cartitems;
+    const cartitems = cart?.cart?.cartitems;
     return (
         <div className="container mt-4">
             <h2 className="text-center text-success fw-bold mb-4">Shopping Cart</h2>
             
             {cartitems && cartitems.length > 0 ? (
                 <div className="card shadow p-4">
-                    <table className="table table-hover">
+                    <table className="table table-hover table-responsive overflow-hidden">
                         <thead className="table-success">
                             <tr>
                                 <th>#</th>

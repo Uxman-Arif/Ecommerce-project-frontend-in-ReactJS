@@ -4,7 +4,7 @@ import { cartcntxt } from "../context/cartcontext";
 
 const Navbar = () => {
   const cart = useContext(cartcntxt);
-  const cartitems = cart.cart.cartitems;
+  const cartitems = cart?.cart?.cartitems;
   const navigate = useNavigate();
 
   function logoutfnc() {

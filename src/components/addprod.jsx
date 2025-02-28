@@ -1,35 +1,55 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { productcntxt } from '../context/productcontext';
-import {useOutletContext} from 'react-router-dom';
-
+import { useOutletContext } from 'react-router-dom';
 
 export function Addprod() {
-    const {user} = useOutletContext();
+    const { user } = useOutletContext();
     const prods = useContext(productcntxt);
-    return(
-        <div className="container">
+
+    return (
+        <div className="container mt-5">
             <div className="row justify-content-center">
-                <div className="col-6">
-                    <form action="" encType="multipart/form-data" onSubmit={prods.handleupload}>
-                        <label htmlFor="" className='fw-bold'>Name: </label>
-                        <input required className='m-1' type="text" name="name" id="" /><br />
-                        
-                        <label htmlFor="" className='fw-bold'>Description: </label>
-                        <input required className='m-1' type="text" name="description" id="" /><br />
+                <div className="col-md-6">
+                    <div className="card shadow-lg p-4">
+                        <h2 className="text-center text-primary fw-bold">Add New Product</h2>
+                        <hr />
+                        <form encType="multipart/form-data" onSubmit={prods.handleupload}>
+                            
+                            <div className="mb-3">
+                                <label className="form-label fw-bold">Product Name:</label>
+                                <input required type="text" name="name" className="form-control" placeholder="Enter product name" />
+                            </div>
 
-                        <label htmlFor="" className='fw-bold'>Available Stock: </label>
-                        <input required className='m-1' type="number" name="stk" id="" /><br />
+                            <div className="mb-3">
+                                <label className="form-label fw-bold">Description:</label>
+                                <textarea required name="description" className="form-control" rows="3" placeholder="Enter product description"></textarea>
+                            </div>
 
-                        <label htmlFor="" className='fw-bold'>Price: </label>
-                        <input required className='m-1' type="number" name="price" id="" /><br />
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label className="form-label fw-bold">Available Stock:</label>
+                                    <input required type="number" name="stk" className="form-control" placeholder="Enter stock quantity" />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label className="form-label fw-bold">Price:</label>
+                                    <input required type="number" name="price" className="form-control" placeholder="Enter product price" />
+                                </div>
+                            </div>
 
-                        <input required className='m-1' type="hidden" value={user?.user?._id} name="owner" id="" />
+                            <input required type="hidden" value={user?.user?._id} name="owner" />
 
-                        <label htmlFor="" className='fw-bold'>Image: </label>
-                        <input required className='m-1' type="file" name="picture" id="" /><br />
+                            <div className="mb-3">
+                                <label className="form-label fw-bold">Upload Image:</label>
+                                <input required type="file" name="picture" className="form-control" />
+                            </div>
 
-                        <button className="btn btn btn-info m-1" type='submit'>Add Product!</button>
-                    </form>
+                            <div className="text-center">
+                                <button className="btn btn-success w-100 fw-bold" type="submit">
+                                    <i className="bi bi-plus-circle"></i> Add Product
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

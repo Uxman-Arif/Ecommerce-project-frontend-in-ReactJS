@@ -9,8 +9,7 @@ export function Products() {
     const cart = useContext(cartcntxt);
     const prods = useContext(productcntxt);
     const navigate = useNavigate();
-
-    // Group products into chunks of 3 (Adjust as needed)
+    cart.setuser(user?.user?._id);
     const chunkSize = 3;
     const productChunks = [];
     if (prods.product.products) {
@@ -28,17 +27,18 @@ export function Products() {
                 </div>
             </div>
 
-            {/* Bootstrap Carousel */}
+            <h1 className='text-center fw-bold text-success'>Products</h1><hr />
+            
             <div id="productCarousel" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     {productChunks.map((chunk, index) => (
                         <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                             <div className="row justify-content-center">
                                 {chunk.map((prod) => {
-                                    const isInCart = cart?.cart?.cartitems.some(item => prod._id === item.product._id);
+                                    const isInCart = cart?.cart?.cartitems?.some(item => prod._id === item.product._id);
                                     return (
                                         <div className="col-md-4" key={prod._id}>
-                                            <div className={`${styles.card} card`}>
+                                            <div className={`${styles.card} card m-1`}>
                                                 <img className="card-img-top" src={`http://127.0.0.1:8000/uploads/${prod.picture}`} alt="" />
                                                 <div className="card-body">
                                                     <h5 className="card-title text-center text-success"><strong>{prod.name}</strong></h5><hr />
@@ -65,11 +65,11 @@ export function Products() {
                 </div>
                 {/* Carousel Controls */}
                 <button className="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="carousel-control-prev-icon" style={{filter: "invert(100%)"}} aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button className="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="carousel-control-next-icon" style={{filter: "invert(100%)"}} aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
