@@ -33,7 +33,7 @@ export function Checkoutprovider(props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({review:e.target.review.value})
+            body:JSON.stringify({review:e.target.review.value, owner:e.target.owner.value})
         });
         e.target.reset();
         fetchprod().then((prod)=>{setprod(prod)});

@@ -9,7 +9,7 @@ async function fetchcart() {
 }
 
 export function Cartcontextprovider(props) {
-  const [cartCount, setCartCount] = useState(0);
+    const [cartCount, setCartCount] = useState(0);
     const [cart, setcart] = useState([]);
 
     useEffect(()=>{
@@ -28,7 +28,9 @@ export function Cartcontextprovider(props) {
             headers: {
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({prodid:e.target.prodid.value, quantity:e.target.quantity.value}),
+            body:JSON.stringify({prodid:e.target.prodid.value, quantity:e.target.quantity.value, owner:e.target.owner.value
+                
+            }),
         });
 
         const newcart = await response.json();

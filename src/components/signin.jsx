@@ -1,6 +1,8 @@
-const {useState} = require('react');
+import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function Signin() {
+    const navigate = useNavigate();
     const [success, setsuccess] = useState('');
     const [error, seterror] = useState('');
 
@@ -25,6 +27,7 @@ export function Signin() {
         };
         if(data.token){
             localStorage.setItem('Login Token', data.token);
+            navigate('/products');
         }
         e.target.reset();
     };

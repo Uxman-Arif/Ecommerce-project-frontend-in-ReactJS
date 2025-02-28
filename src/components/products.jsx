@@ -16,7 +16,7 @@ export function Products() {
                     prods.product.products.map((prod) => {
                         const isInCart = cart?.cart?.cartitems.some(item => prod._id === item.product._id);
                         return (
-                            <div className="col-4" key={prod._id}>
+                            <div className="col-md-4" key={prod._id}>
                                 <div className="card">
                                     <img className="card-img-top" src={`http://127.0.0.1:8000/uploads/${prod.picture}`} alt="" />
                                     <div className="card-body">
@@ -28,6 +28,7 @@ export function Products() {
                                         <form onSubmit={cart.addcarthandle}>
                                             <input type="hidden" name="prodid" value={prod._id} />
                                             <input type="hidden" name="quantity" value={1} />
+                                            <input type="hidden" name="owner" value={user?.user?._id} />
                                             <button className="btn btn-primary w-100 mt-1" disabled={isInCart}>Add to Cart!</button>
                                         </form>
                                     </div>

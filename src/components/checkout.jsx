@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { checkoutcntxt } from '../context/ceckoutcontext';
 import { cartcntxt } from '../context/cartcontext';
+import {useOutletContext} from 'react-router-dom';
 
 export function Checkout() {
     const prod = useContext(checkoutcntxt);
     const cart = useContext(cartcntxt);
     const params = useParams();
+    const {user} = useOutletContext();
     
     useEffect(() => {
         cart.setCartCount(cart.cart.cartitems?.length || 0);
@@ -22,10 +24,10 @@ export function Checkout() {
     return product ? (
         <div className="container">
             <div className="row">
-                <div className="col-6">
+                <div className="col-md-6">
                     <img className="img img-fluid" src={`http://127.0.0.1:8000/uploads/${product.picture}`} alt={product.name} />
                 </div>
-                <div className="col-6">
+                <div className="col-md-6">
                     <h1>{product.name}</h1>
                     <p><strong>Description: </strong>{product.description}</p>
                     <p><strong>Available Stock: </strong>{product.stk_available}</p>
@@ -54,10 +56,11 @@ export function Checkout() {
             <div className="row justify-content-center">
                 <h1 className="text-info text-center">Product Reviews</h1>
                 <hr />
-                <div className="col-6">
+                <div className="col-md-6">
                     <form onSubmit={prod.handlerevewupload}>
                         <label htmlFor="review" className="fw-bold">Share your thoughts about this Product:</label>
                         <textarea name="review" id="review" className="w-100" rows={5}></textarea>
+                        <input type="hidden" name="owner" value={user.user._id} id="" />
                         <button className="btn btn-primary w-100">Post!</button>
                     </form>
                     {prod.prodreview.reviews?.length ? (
@@ -72,7 +75,7 @@ export function Checkout() {
                                             className="img img-fluid" 
                                         />
                                     </div>
-                                    <div className="col-8 fw-bold h3">Basheer</div>
+                                    <div className="col-8 fw-bold h3">{review.owner.name}</div>
                                 </div>
                                 <p>{review.review}</p>
                             </div>

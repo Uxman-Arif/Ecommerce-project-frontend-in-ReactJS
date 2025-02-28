@@ -22,6 +22,7 @@ export function Productcntxtprovider(props) {
         formData.append('description', e.target.description.value);
         formData.append('stk', e.target.stk.value);
         formData.append('price', e.target.price.value);
+        formData.append('owner', e.target.owner.value);
         formData.append('picture', e.target.picture.files[0]); // Correct way to get the file
     
         try {
