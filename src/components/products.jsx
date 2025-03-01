@@ -19,7 +19,7 @@ export function Products() {
     }
 
     return (
-        <div className={`container-fluid ${styles.container}`}>
+        <div className={`container-fluid ${styles.containers} user-select-none`}>
             <div className={`${styles.cover} row`}>
                 <div className="col-md-6 col-9">
                     <h1>Your One-Stop Shop for Quality, Convenience, and Savings!</h1>
@@ -41,7 +41,7 @@ export function Products() {
                                             <div className={`${styles.card} card m-1`}>
                                                 <img className="card-img-top" src={`http://127.0.0.1:8000/uploads/${prod.picture}`} alt="" />
                                                 <div className="card-body">
-                                                    <h5 className="card-title text-center text-success"><strong>{prod.name}</strong></h5><hr />
+                                                    <h5 className="card-title text-center text-success text-capitalize"><strong>{prod.name}</strong></h5><hr />
                                                     <p className="card-text"><strong>Description: </strong>{prod.description.slice(0, 25)}...</p>
                                                     <div className="row justify-content-between">
                                                         <span className="card-text col-5"><strong>Price: </strong>{prod.price}</span>

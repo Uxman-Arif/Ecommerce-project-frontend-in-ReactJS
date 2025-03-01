@@ -8,7 +8,7 @@ export function Cartcontextprovider(props) {
     const [user, setuser] = useState(null);
     
     async function fetchcart() {
-        if (!user) return;  // Stop execution if user is null
+        if (!user) return;
         try {
             console.log("Fetching cart for user:", user);
             const response = await fetch(`http://127.0.0.1:8000/cart/${user}`, { method: 'GET' });
@@ -17,24 +17,24 @@ export function Cartcontextprovider(props) {
             }
             const cartData = await response.json();
             console.log("Cart Fetched:", cartData);
-            return cartData;  // ✅ Ensure the function returns data
+            return cartData;
         } catch (error) {
             console.error("Error fetching cart:", error);
-            return []; // Return an empty array in case of an error
+            return [];
         }
     }
 
     useEffect(() => {
         console.log('Fetching cart inside useEffect...');
         fetchcart().then((crt) => {
-            if (crt) setcart(crt);  // ✅ Ensure we are setting data properly
+            if (crt) setcart(crt);
         });
-    }, [user]); // ✅ Runs when `user` changes
+    }, [user]);
 
     useEffect(() => {
         console.log("Cart Updated:", cart);
         setCartCount(cart?.cartitems?.length || 0);
-    }, [cart]); // ✅ Update count whenever `cart` changes
+    }, [cart]);
 
     async function addcarthandle(e) {
         e.preventDefault();
@@ -52,8 +52,8 @@ export function Cartcontextprovider(props) {
 
         const newcart = await response.json();
         e.target.reset();
-        setcart(newcart);  // ✅ Update cart immediately with the new response
-        setCartCount(newcart?.cartitems?.length || 0); // ✅ Update cart count
+        setcart(newcart);
+        setCartCount(newcart?.cartitems?.length || 0);
     }
 
     async function quantityhandle(prodid, action) {

@@ -32,6 +32,10 @@ export function Signin() {
         e.target.reset();
     };
 
+    function movetosignup() {
+        navigate('/signup');
+    };
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -49,6 +53,8 @@ export function Signin() {
                         <button className="btn btn-primary">Signin!</button>
 
                     </form>
+                        <p className='text-center'>Don't have any account <a onClick={()=>{movetosignup()}} className='text-primary user-select-none'>signup here</a></p>
+
                 </div>
             </div>
         </div>

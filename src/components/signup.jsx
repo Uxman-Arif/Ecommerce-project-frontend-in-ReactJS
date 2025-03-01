@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 
 export function Signup(){
     const [success, setsuccess] = useState('');
     const [error, seterror] = useState('');
+    const navigate = useNavigate();
     async function handleusersignup(e) {
         e.preventDefault();
         setsuccess('');
@@ -24,6 +26,12 @@ export function Signup(){
         }
         e.target.reset();
     };
+
+    function movetosignin() {
+        navigate('/signin');
+    };
+
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -45,6 +53,7 @@ export function Signup(){
                         <button className="btn btn-primary">Signup!</button>
 
                     </form>
+                    <p className='text-center'>Already have an account <a onClick={()=>{movetosignin()}} className='text-primary user-select-none'>signin here</a></p>
                 </div>
             </div>
         </div>
